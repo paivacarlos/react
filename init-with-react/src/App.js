@@ -2,8 +2,13 @@
 
 class App extends React.Component {
   render(){
+
+    this.state = {
+      name: 'Carlos Paiva'
+    }
+
     return (
-      <h1>Hello from class App</h1>
+      <h1>Hello {this.state.name}</h1>
     )
   }
 }

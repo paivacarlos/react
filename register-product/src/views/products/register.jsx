@@ -1,14 +1,16 @@
 import React from 'react'
 
+const initState = {
+    productName:'',
+    sku:'',
+    description:'',
+    price: 0,
+    provider:''    
+}
+
 export default class ProductRegister extends React.Component {
 
-    state = {
-        productName:'',
-        sku:'',
-        description:'',
-        price: 0,
-        provider:''    
-    }
+    state = initState
 
     onChange = (event) => {
         const value = event.target.value
@@ -18,6 +20,10 @@ export default class ProductRegister extends React.Component {
 
     onSubmit = (event) => {
         console.log(this.state)
+    }
+
+    cleanFields = () => {
+        this.setState(initState)
     }
 
 	render(){
@@ -96,7 +102,7 @@ export default class ProductRegister extends React.Component {
                         </div>
 
                         <div className="col-md-1">
-                            <button className="btn btn-primary">Limpar</button>
+                            <button onClick={this.cleanFields} className="btn btn-primary">Limpar</button>
                         </div>
                     </div>                   
 

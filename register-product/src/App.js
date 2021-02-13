@@ -6,8 +6,10 @@ import Home from './views/home'
 function App() {
   return (
     <>
-      <Navbar />
-      <Home />
+      <div className="container">
+        <Navbar />
+        <Home />
+      </div>
     </>    
   );
 }

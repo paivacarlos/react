@@ -1,14 +1,23 @@
  import React from 'react'
 
 class App extends React.Component {
+
+  state = {
+    name: ''
+  }
+
+  changeName = (event) => {
+    this.setState({
+      name: event.target.value 
+    })
+  }
+
   render(){
-
-    this.state = {
-      name: 'Carlos Paiva'
-    }
-
     return (
-      <h1>Hello {this.state.name}</h1>
+      <>
+        <input type="text" value={this.state.name} onChange= {this.changeName} />
+        <h1>Hello {this.state.name}</h1>
+      </>
     )
   }
 }

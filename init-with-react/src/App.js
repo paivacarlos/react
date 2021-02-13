@@ -12,11 +12,24 @@ class App extends React.Component {
     })
   }
 
+  createComboBox = () => {
+    const options = ['firstPosition', 'secondPosition', 'thirdPosition']
+    const comboBoxOptions = options.map( option => <option>{option}</option>)
+
+    return(
+      <select>
+        {comboBoxOptions}
+      </select>
+    )
+  }
+
   render(){
+    const MyCustomTagComboBox = () => this.createComboBox()
     return (
       <>
         <input type="text" value={this.state.name} onChange= {this.changeName} />
         <h1>Hello {this.state.name}</h1>
+        <MyCustomTagComboBox />
       </>
     )
   }

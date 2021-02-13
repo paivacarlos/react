@@ -1,5 +1,7 @@
 import React from 'react'
 
+import ProductService from '../../app/productService'
+
 const initState = {
     productName:'',
     sku:'',
@@ -10,6 +12,11 @@ const initState = {
 
 export default class ProductRegister extends React.Component {
 
+    constructor(){
+        super()
+        this.service = new ProductService()
+    }
+
     state = initState
 
     onChange = (event) => {
@@ -19,7 +26,16 @@ export default class ProductRegister extends React.Component {
     }
 
     onSubmit = (event) => {
-        console.log(this.state)
+        const product = {
+            productName: this.state.productName,
+            sku: this.state.sku,
+            description: this.state.description,
+            price: this.state.price,
+            provider: this.state.provider
+        }
+        this.service.save(product)
+        this.cleanFields()
+        console.log('Salvo com sucesso!')
     }
 
     cleanFields = () => {

@@ -8,7 +8,8 @@ const initState = {
     description:'',
     price: 0,
     provider:'',
-    showSuccessMesage: false   
+    showSuccessMesage: false,
+    showErrorMesage: []   
 }
 
 export default class ProductRegister extends React.Component {
@@ -33,10 +34,15 @@ export default class ProductRegister extends React.Component {
             description: this.state.description,
             price: this.state.price,
             provider: this.state.provider
+        }        
+        try {
+            this.service.save(product)
+            this.cleanFields()
+            this.setState({showSuccessMesage: true})
+        } catch (error) {
+            const errorMsg = error.errors
+            this.setState({showErrorMesage: errorMsg})
         }
-        this.service.save(product)
-        this.cleanFields()
-        this.setState({showSuccessMesage: true})
     }
 
     cleanFields = () => {
@@ -58,9 +64,21 @@ export default class ProductRegister extends React.Component {
                             <div className="alert alert-dismissible alert-success">
                                 <button type="button" className="close" data-dismiss="alert">&times;</button>
                                 <strong>Processo realizado!</strong> Produto cadastrado com sucesso!
-                            </div>
-                        
+                            </div>                        
                     }
+
+                    {//renderização condicional
+                        this.state.showErrorMesage.length > 0 &&
+                        
+                        this.state.showErrorMesage.map(msg => {
+                            return(
+                                <div className="alert alert-dismissible alert-danger">
+                                    <button type="button" className="close" data-dismiss="alert">&times;</button>
+                                    <strong>Ocorreu algum imprevisto!</strong> {msg}
+                                </div> 
+                            )
+                        })
+                    }                    
 
 					<div className="row">
 						<div className="col-md-6">

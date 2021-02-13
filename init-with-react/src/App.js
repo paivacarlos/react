@@ -1,18 +1,12 @@
  import React from 'react'
 
-class App extends React.Component {
+function App (props){
 
-  state = {
-    name: ''
+  const changeName = event => {
+    console.log(event.target.value);
   }
 
-  changeName = (event) => {
-    this.setState({
-      name: event.target.value 
-    })
-  }
-
-  createComboBox = () => {
+ const createComboBox = () => {
     const options = ['firstPosition', 'secondPosition', 'thirdPosition']
     const comboBoxOptions = options.map( option => <option>{option}</option>)
 
@@ -23,22 +17,15 @@ class App extends React.Component {
     )
   }
 
-  componentDidMount() {
-    console.log('Executed componentDidMount')
-  }
+  const MyCustomTagComboBox = () => createComboBox()
 
-  render(){
-    console.log('Executed render')
-
-    const MyCustomTagComboBox = () => this.createComboBox()
-    return (
-      <>
-        <input type="text" value={this.state.name} onChange= {this.changeName} />
-        <h1>Hello {this.state.name}</h1>
-        <MyCustomTagComboBox />
-      </>
-    )
-  }
+  return (
+    <>
+      <input type="text" value={props.name} onChange={changeName} />
+      <h1>Hello {props.name}</h1>
+      <MyCustomTagComboBox />
+    </>
+  )
 }
 
 export default App;

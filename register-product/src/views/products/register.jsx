@@ -7,7 +7,8 @@ const initState = {
     sku:'',
     description:'',
     price: 0,
-    provider:''    
+    provider:'',
+    showSuccessMesage: false   
 }
 
 export default class ProductRegister extends React.Component {
@@ -35,7 +36,7 @@ export default class ProductRegister extends React.Component {
         }
         this.service.save(product)
         this.cleanFields()
-        console.log('Salvo com sucesso!')
+        this.setState({showSuccessMesage: true})
     }
 
     cleanFields = () => {
@@ -51,6 +52,15 @@ export default class ProductRegister extends React.Component {
 				</div>
 
 				<div className="card-body">
+
+                    {
+                        this.state.showSuccessMesage ? (
+                            <div className="alert alert-dismissible alert-success">
+                                <button type="button" className="close" data-dismiss="alert">&times;</button>
+                                <strong>Processo realizado!</strong> Produto cadastrado com sucesso!
+                            </div>
+                        ): (<></>)
+                    }
 
 					<div className="row">
 						<div className="col-md-6">

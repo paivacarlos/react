@@ -3,13 +3,14 @@ import React from 'react'
 function Home() {
     return (
       <div className="jumbotron">
-        <h1 className="display-3">Hello, world!</h1>
-        <p className="lead">This is a simple hero unit, 
-                            a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr className="my-4" />
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <h1 className="display-3">Seja bem-vindo!</h1>
         <p className="lead">
-          <a className="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+          Ficamos muito felizes que optou pela nossa plataforma, utiliza a barra de navegação para acessar ás páginas.
+        </p>
+        <hr className="my-4" />
+        <p>Plataforma líder, sempre com você.</p>
+        <p className="lead">
+          <a className="btn btn-primary btn-lg" href="#" role="button">Cadastrar</a>
         </p>
       </div>    
     )

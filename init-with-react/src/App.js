@@ -23,7 +23,13 @@ class App extends React.Component {
     )
   }
 
+  componentDidMount() {
+    console.log('Executed componentDidMount')
+  }
+
   render(){
+    console.log('Executed render')
+
     const MyCustomTagComboBox = () => this.createComboBox()
     return (
       <>

@@ -53,13 +53,13 @@ export default class ProductRegister extends React.Component {
 
 				<div className="card-body">
 
-                    {
-                        this.state.showSuccessMesage ? (
+                    {//renderização condicional
+                        this.state.showSuccessMesage &&
                             <div className="alert alert-dismissible alert-success">
                                 <button type="button" className="close" data-dismiss="alert">&times;</button>
                                 <strong>Processo realizado!</strong> Produto cadastrado com sucesso!
                             </div>
-                        ): (<></>)
+                        
                     }
 
 					<div className="row">

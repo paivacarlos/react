@@ -1,10 +1,22 @@
 import React from 'react'
 
+import ProductService from '../app/productService'
+
 export default class ProductsSearch extends React.Component{
+
+    constructor(){
+        super()
+        this.service = new ProductService()
+    }
 
     state = {
         products: []
-    }   
+    }  
+    
+    componentDidMount(){
+        const products = this.service.getProduct()
+        this.setState({ products })
+    }
 
     render(){
         return(
@@ -17,7 +29,7 @@ export default class ProductsSearch extends React.Component{
         
                 <div className="card-body">
                     <table className="table table-hover">
-                        
+
                         <thead>
                             <tr>
                                 <th>Nome do Produto</th>
@@ -30,9 +42,9 @@ export default class ProductsSearch extends React.Component{
                         
                         <tbody>
                             {
-                                this.state.products.map(product => {
+                                this.state.products.map((product, index)=> {
                                     return(
-                                        <tr>
+                                        <tr key={index}>
                                             <th>{product.productName}</th>
                                             <th>{product.sku}</th>
                                             <th>{product.price}</th>

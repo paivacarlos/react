@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from 'react'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 

@@ -1,6 +1,4 @@
 import React from 'react'
-import { Route } from 'react-router-dom';
-
 import Navbar from './components/navbar'
 import Routes from './routes'
 

@@ -30,6 +30,7 @@ class ProductRegister extends React.Component {
     }
 
     onSubmit = (event) => {
+        event.preventDefault()//ele desabilita enviar o como form e sim como react
         const product = {
             productName: this.state.productName,
             sku: this.state.sku,
@@ -74,100 +75,104 @@ class ProductRegister extends React.Component {
 
 				<div className="card-body">
 
-                    {//renderização condicional
+                    <form id="frmProduct" onSubmit={this.onSubmit}>
+
+                        {//renderização condicional
                         this.state.showSuccessMesage &&
-                            <div className="alert alert-dismissible alert-success">
-                                <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                <strong>Processo realizado!</strong> Produto cadastrado com sucesso!
-                            </div>                        
-                    }
+                        <div className="alert alert-dismissible alert-success">
+                            <button type="button" className="close" data-dismiss="alert">&times;</button>
+                            <strong>Processo realizado!</strong> Produto cadastrado com sucesso!
+                                </div>                        
+                        }
 
-                    {//renderização condicional
-                        this.state.showErrorMesage.length > 0 &&
-                        
-                        this.state.showErrorMesage.map(msg => {
-                            return(
-                                <div className="alert alert-dismissible alert-danger">
-                                    <button type="button" className="close" data-dismiss="alert">&times;</button>
-                                    <strong>Ocorreu algum imprevisto!</strong> {msg}
-                                </div> 
-                            )
-                        })
-                    }                    
+                        {//renderização condicional
+                            this.state.showErrorMesage.length > 0 &&
+                            
+                            this.state.showErrorMesage.map(msg => {
+                                return(
+                                    <div className="alert alert-dismissible alert-danger">
+                                        <button type="button" className="close" data-dismiss="alert">&times;</button>
+                                        <strong>Ocorreu algum imprevisto!</strong> {msg}
+                                    </div> 
+                                )
+                            })
+                        }                    
 
-					<div className="row">
-						<div className="col-md-6">
-							<div className="form-group">
-								<label>Nome do Produto: *</label>
-								<input type="text" 
-                                       name="productName" 
-                                       value={this.state.productName}
-                                       onChange={this.onChange} 
-                                       className="form-control"/>
-							</div>
-						</div>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Nome do Produto: *</label>
+                                    <input type="text" 
+                                        name="productName" 
+                                        value={this.state.productName}
+                                        onChange={this.onChange} 
+                                        className="form-control"/>
+                                </div>
+                            </div>
 
-						<div className="col-md-6">
-							<div className="form-group">
-									<label>SKU: *</label>
-									<input type="text" 
-                                           name="sku" 
-                                           disabled={this.state.update}
-                                           value={this.state.sku}
-                                           onChange={this.onChange} 
-                                           className="form-control"/>
-							</div>	
-					    </div>
-				    </div>
-
-					<div className="row">
-						<div className="col-md-12">
-							<div className="form-group">
-								<label>Descrição: *</label>
-								<textarea name="description" 
-                                          value={this.state.description} 
-                                          onChange={this.onChange}
-                                          className="form-control"/>
-							</div>
-						</div>
-				    </div>                    
-
-					<div className="row">
-						<div className="col-md-6">
-							<div className="form-group">
-								<label>Preço: *</label>
-								<input name="price" 
-                                       type="text" 
-                                       value={this.state.price}
-                                       onChange={this.onChange} 
-                                       className="form-control"/>
-							</div>
-						</div>
-
-						<div className="col-md-6">
-							<div className="form-group">
-									<label>Fornecedor: *</label>
-									<input name="provider" 
-                                           type="text" 
-                                           value={this.state.provider} 
-                                           onChange={this.onChange}
-                                           className="form-control"/>
-							</div>	
-					    </div>
-				    </div> 
-
-                    <div className="row">
-                        <div className="col-md-1">
-                            <button onClick={this.onSubmit} className="btn btn-success">
-                                {this.state.update ? 'Atualizar' : 'Salvar'}
-                            </button>
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                        <label>SKU: *</label>
+                                        <input type="text" 
+                                            name="sku" 
+                                            disabled={this.state.update}
+                                            value={this.state.sku}
+                                            onChange={this.onChange} 
+                                            className="form-control"/>
+                                </div>	
+                            </div>
                         </div>
 
-                        <div className="col-md-1">
-                            <button onClick={this.cleanFields} className="btn btn-primary">Limpar</button>
-                        </div>
-                    </div>                   
+                        <div className="row">
+                            <div className="col-md-12">
+                                <div className="form-group">
+                                    <label>Descrição: *</label>
+                                    <textarea name="description" 
+                                            value={this.state.description} 
+                                            onChange={this.onChange}
+                                            className="form-control"/>
+                                </div>
+                            </div>
+                        </div>                    
 
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Preço: *</label>
+                                    <input name="price" 
+                                        type="text" 
+                                        value={this.state.price}
+                                        onChange={this.onChange} 
+                                        className="form-control"/>
+                                </div>
+                            </div>
+
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                        <label>Fornecedor: *</label>
+                                        <input name="provider" 
+                                            type="text" 
+                                            value={this.state.provider} 
+                                            onChange={this.onChange}
+                                            className="form-control"/>
+                                </div>	
+                            </div>
+                        </div> 
+
+                        <div className="row">
+                            <div className="col-md-1">
+                                <button type="submit" className="btn btn-success">
+                                    {this.state.update ? 'Atualizar' : 'Salvar'}
+                                </button>
+                            </div>
+
+                            <div className="col-md-1">
+                                <button onClick={this.cleanFields} className="btn btn-primary">Limpar</button>
+                            </div>
+                        </div>                 
+
+                    </form>
+                    
 			    </div>
                 
 		    </div>

@@ -10,7 +10,8 @@ const initState = {
     price: 0,
     provider:'',
     showSuccessMesage: false,
-    showErrorMesage: []   
+    showErrorMesage: [],
+    update: false  
 }
 
 class ProductRegister extends React.Component {
@@ -57,7 +58,7 @@ class ProductRegister extends React.Component {
             const result = this.service.getProduct().filter(product => product.sku === sku)
             if(result.length === 1){
                 const productFound = result[0]
-                this.setState({ ...productFound })
+                this.setState({ ...productFound, update: true })
             }
         }
     }
@@ -67,7 +68,8 @@ class ProductRegister extends React.Component {
 			<div className="card">
 
 				<div className="card-header">
-					Cadstro de Produto
+                    {this.state.update ? 'Atualização ' : 'Cadastro '}
+					de Produto
 				</div>
 
 				<div className="card-body">
@@ -110,6 +112,7 @@ class ProductRegister extends React.Component {
 									<label>SKU: *</label>
 									<input type="text" 
                                            name="sku" 
+                                           disabled={this.state.update}
                                            value={this.state.sku}
                                            onChange={this.onChange} 
                                            className="form-control"/>
@@ -155,7 +158,9 @@ class ProductRegister extends React.Component {
 
                     <div className="row">
                         <div className="col-md-1">
-                            <button onClick={this.onSubmit} className="btn btn-success">Salvar</button>
+                            <button onClick={this.onSubmit} className="btn btn-success">
+                                {this.state.update ? 'Atualizar' : 'Salvar'}
+                            </button>
                         </div>
 
                         <div className="col-md-1">

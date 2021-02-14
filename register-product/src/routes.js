@@ -9,7 +9,7 @@ import ProductSearch from './app/search'
 export default () => {
   return(
     <Switch>
-        <Route exact path="/products-register" component={ProductRegister} />
+        <Route exact path="/products-register/:sku?" component={ProductRegister} />
         <Route exact path="/products-search" component={ProductSearch} />
         <Route exact path="/" component={Home} />
     </Switch>  

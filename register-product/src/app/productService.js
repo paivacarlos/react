@@ -37,6 +37,9 @@ export default class ProductService {
 
     getProduct = () => {
         const products = localStorage.getItem(PRODUCTS)
+        if(!products){
+            return []
+        }
         return JSON.parse(products)
     }
 
@@ -49,7 +52,17 @@ export default class ProductService {
         }) 
         
         return index
-   } 
+   }
+
+   delete = (sku) => {
+       const index = this.getIndex(sku)
+       if(index !== null){
+            const products = this.getProduct()
+            products.splice(index, 1)  
+            localStorage.setItem(PRODUCTS, JSON.stringify(products))  
+            return products
+       }
+   }
     
     save = (product) => {
         this.validateField(product)

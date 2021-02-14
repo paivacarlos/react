@@ -1,6 +1,7 @@
 import React from 'react'
 
 import ProductService from '../../app/productService'
+import { withRouter } from 'react-router-dom'
 
 const initState = {
     productName:'',
@@ -12,7 +13,7 @@ const initState = {
     showErrorMesage: []   
 }
 
-export default class ProductRegister extends React.Component {
+class ProductRegister extends React.Component {
 
     constructor(){
         super()
@@ -47,6 +48,18 @@ export default class ProductRegister extends React.Component {
 
     cleanFields = () => {
         this.setState(initState)
+    }
+
+    componentDidMount() {
+        const sku = this.props.match.params.sku
+
+        if(sku){
+            const result = this.service.getProduct().filter(product => product.sku === sku)
+            if(result.length === 1){
+                const productFound = result[0]
+                this.setState({ ...productFound })
+            }
+        }
     }
 
 	render(){
@@ -156,3 +169,5 @@ export default class ProductRegister extends React.Component {
 	)
   }
 }
+
+export default withRouter(ProductRegister)

@@ -1,8 +1,9 @@
 import React from 'react'
 
 import ProductService from '../app/productService'
+import { withRouter } from 'react-router-dom'
 
-export default class ProductsSearch extends React.Component{
+class ProductsSearch extends React.Component{
 
     constructor(){
         super()
@@ -16,6 +17,11 @@ export default class ProductsSearch extends React.Component{
     componentDidMount(){
         const products = this.service.getProduct()
         this.setState({ products })
+    }
+
+    prepareEdition = (sku) => {
+        console.log('SKU para editar: ', sku);
+        this.props.history.push(`/products-register/${sku}`)        
     }
 
     render(){
@@ -49,7 +55,10 @@ export default class ProductsSearch extends React.Component{
                                             <th>{product.sku}</th>
                                             <th>{product.price}</th>
                                             <th>{product.provider}</th>
-                                            <th></th>
+                                            <th>
+                                                <button onClick={() => this.prepareEdition(product.sku)} className="btn btn-primary">Editar</button>
+                                                <button className="btn btn-danger">Remover</button>
+                                            </th>
                                         </tr>
                                     )
                                 })
@@ -61,5 +70,6 @@ export default class ProductsSearch extends React.Component{
             </div>  
         )
     }
-
 }
+
+export default withRouter(ProductsSearch)

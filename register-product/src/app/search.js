@@ -20,8 +20,12 @@ class ProductsSearch extends React.Component{
     }
 
     prepareEdition = (sku) => {
-        console.log('SKU para editar: ', sku);
         this.props.history.push(`/products-register/${sku}`)        
+    }
+
+    deleteProduct = (sku) => {
+        const products = this.service.delete(sku)
+        this.setState({products})
     }
 
     render(){
@@ -57,7 +61,7 @@ class ProductsSearch extends React.Component{
                                             <th>{product.provider}</th>
                                             <th>
                                                 <button onClick={() => this.prepareEdition(product.sku)} className="btn btn-primary">Editar</button>
-                                                <button className="btn btn-danger">Remover</button>
+                                                <button onClick={() => this.deleteProduct(product.sku)} className="btn btn-danger">Remover</button>
                                             </th>
                                         </tr>
                                     )

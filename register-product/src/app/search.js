@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Card from '../components/card'
 import ProductService from '../app/productService'
 import { withRouter } from 'react-router-dom'
 
@@ -31,13 +32,7 @@ class ProductsSearch extends React.Component{
     render(){
         return(
 
-            <div className="card">
-
-                <div className="card-header">
-                    Consulta de produto
-                </div>
-        
-                <div className="card-body">
+            <Card header="Product Consult">
                     <table className="table table-hover">
 
                         <thead>
@@ -69,9 +64,7 @@ class ProductsSearch extends React.Component{
                             }
                         </tbody>
                     </table>
-                    
-                </div>
-            </div>  
+            </Card>  
         )
     }
 }

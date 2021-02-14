@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Card from '../../components/card'
 import ProductService from '../../app/productService'
 import { withRouter } from 'react-router-dom'
 
@@ -66,14 +67,7 @@ class ProductRegister extends React.Component {
 
 	render(){
 		return(
-			<div className="card">
-
-				<div className="card-header">
-                    {this.state.update ? 'Atualização ' : 'Cadastro '}
-					de Produto
-				</div>
-
-				<div className="card-body">
+			<Card header={this.state.update ? 'Atualização de produto' : 'Cadastro de produto'}>
 
                     <form id="frmProduct" onSubmit={this.onSubmit}>
 
@@ -171,11 +165,8 @@ class ProductRegister extends React.Component {
                             </div>
                         </div>                 
 
-                    </form>
-                    
-			    </div>
-                
-		    </div>
+                    </form>                
+		    </Card>
 	)
   }
 }

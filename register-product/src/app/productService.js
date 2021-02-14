@@ -39,6 +39,17 @@ export default class ProductService {
         const products = localStorage.getItem(PRODUCTS)
         return JSON.parse(products)
     }
+
+   getIndex = (sku) => {
+        let index = null
+        this.getProduct().forEach((product, i) => {
+            if(product.sku === sku){
+                index = i
+            }
+        }) 
+        
+        return index
+   } 
     
     save = (product) => {
         this.validateField(product)
@@ -51,7 +62,12 @@ export default class ProductService {
             products = JSON.parse(products)
         }
 
-        products.push(product)
+        const index = this.getIndex(product.sku)
+        if(index === null){
+            products.push(product)
+        }else{
+            products[index] = product
+        }
 
         localStorage.setItem(PRODUCTS, JSON.stringify(products))
     }        
